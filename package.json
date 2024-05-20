@@ -1,9 +1,9 @@
 {
-  "name": "keep-context",
-  "displayName": "Keep Context",
+  "name": "keep-context-fork",
+  "displayName": "Keep Context (Fork)",
   "description": "Make context switch easy to be managed and tracked.",
-  "version": "0.5.3",
-  "publisher": "marlom",
+  "version": "0.6.0",
+  "publisher": "nev3rm0re",
   "icon": "images/keep-context.png",
   "engines": {
     "vscode": "^1.77.0"
@@ -21,9 +21,9 @@
   ],
   "contributes": {
     "configuration": {
-      "title": "Keep Context",
+      "title": "Keep Context (Fork)",
       "properties": {
-        "keepContext.contextStore": {
+        "keepContextFork.contextStore": {
           "type": "string",
           "enum": [
             "file",
@@ -35,6 +35,11 @@
           ],
           "default": "workspace",
           "description": "Set the place to store contexts, workspace state or file (⚠️ not supported by workspace with multiple projects)"
+        },
+        "keepContextFork.contextFileName": {
+          "type": "string",
+          "default": "keep-context-fork.json",
+          "description": "The filename to use when contextStore is set to file. This file will be stored in the .vscode folder."
         }
       }
     },
@@ -42,60 +47,60 @@
       {
         "key": "ctrl+k ctrl+shift+c",
         "mac": "cmd+k cmd+shift+c",
-        "command": "keepContext.newTask"
+        "command": "keepContextFork.newTask"
       },
       {
         "key": "ctrl+k ctrl+shift+s",
         "mac": "cmd+k cmd+shift+s",
-        "command": "keepContext.selectTask"
+        "command": "keepContextFork.selectTask"
       }
     ],
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "keep-context",
-          "title": "Keep Context",
+          "id": "keep-context-fork",
+          "title": "Keep Context (FORK)",
           "icon": "images/keep-context.svg"
         }
       ]
     },
     "views": {
-      "keep-context": [
+      "keep-context-fork": [
         {
-          "id": "keepContext",
+          "id": "keepContextFork",
           "name": "Contexts"
         }
       ]
     },
     "commands": [
       {
-        "command": "keepContext.clearState",
+        "command": "keepContextFork.clearState",
         "title": "Clear state",
-        "category": "Keep Context"
+        "category": "Keep Context (Fork)"
       },
       {
-        "command": "keepContext.newTask",
+        "command": "keepContextFork.newTask",
         "title": "Create Task",
-        "category": "Keep Context"
+        "category": "Keep Context (Fork)"
       },
       {
-        "command": "keepContext.selectTask",
+        "command": "keepContextFork.selectTask",
         "title": "Select Task",
-        "category": "Keep Context"
+        "category": "Keep Context (Fork)"
       },
       {
-        "command": "keepContext.editTask",
+        "command": "keepContextFork.editTask",
         "title": "Edit Task",
-        "category": "Keep Context",
+        "category": "Keep Context (Fork)",
         "icon": {
           "light": "images/light/edit.svg",
           "dark": "images/dark/edit.svg"
         }
       },
       {
-        "command": "keepContext.deleteTask",
+        "command": "keepContextFork.deleteTask",
         "title": "Delete Task",
-        "category": "Keep Context",
+        "category": "Keep Context (Fork)",
         "icon": {
           "light": "images/light/trash.svg",
           "dark": "images/dark/trash.svg"
@@ -105,40 +110,42 @@
     "menus": {
       "commandPalette": [
         {
-          "command": "keepContext.newTask"
+          "command": "keepContextFork.newTask"
         },
         {
-          "command": "keepContext.editTask"
+          "command": "keepContextFork.editTask"
         },
         {
-          "command": "keepContext.deleteTask"
+          "command": "keepContextFork.deleteTask"
         }
       ],
       "view/title": [
         {
-          "command": "keepContext.newTask",
-          "when": "view == keepContext"
+          "command": "keepContextFork.newTask",
+          "when": "view == keepContextFork"
         }
       ],
       "view/item/context": [
         {
-          "command": "keepContext.editTask",
-          "when": "view == keepContext && viewItem == task_item",
+          "command": "keepContextFork.editTask",
+          "when": "view == keepContextFork && viewItem == task_item",
           "group": "inline"
         },
         {
-          "command": "keepContext.deleteTask",
-          "when": "view == keepContext && viewItem == task_item",
+          "command": "keepContextFork.deleteTask",
+          "when": "view == keepContextFork && viewItem == task_item",
           "group": "inline"
         }
       ]
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
+    "package": "pnpm vsce package --no-dependencies",
+    "publish": "pnpm vsce publish --no-dependencies",
+    "vscode:prepublish": "pnpm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile",
+    "pretest": "pnpm run compile",
     "test": "node ./out/test/runTest.js",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",

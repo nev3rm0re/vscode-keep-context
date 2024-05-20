@@ -20,9 +20,10 @@ export class FileStorage implements IStorage {
   /**
    * @param settingsPath `.vscode` folder path
    */
-  constructor(private readonly settingsPath: string) {
-    this.path = path.join(settingsPath, 'keep-context.json');
+  constructor(private readonly settingsPath: string, filename = 'keep-context-fork.json') {
+    this.path = path.join(settingsPath, filename);
 
+    console.log('initializing with ', filename);
     this.initialize();
   }
 

@@ -10,14 +10,14 @@ export function activate(context: vscode.ExtensionContext): void {
 
   const keepContext = new KeepContext();
 
-  vscode.window.registerTreeDataProvider('keepContext', keepContext.treeDataProvider);
+  vscode.window.registerTreeDataProvider('keepContextFork', keepContext.treeDataProvider);
 
-  vscode.commands.registerCommand('keepContext.clearState', keepContext.clearState);
-  vscode.commands.registerCommand('keepContext.newTask', keepContext.newTask);
-  vscode.commands.registerCommand('keepContext.editTask', keepContext.editTask);
-  vscode.commands.registerCommand('keepContext.deleteTask', keepContext.deleteTask);
-  vscode.commands.registerCommand('keepContext.activateTask', keepContext.activateTask);
-  vscode.commands.registerCommand('keepContext.selectTask', keepContext.selectTask);
+  vscode.commands.registerCommand('keepContextFork.clearState', keepContext.clearState);
+  vscode.commands.registerCommand('keepContextFork.newTask', keepContext.newTask);
+  vscode.commands.registerCommand('keepContextFork.editTask', keepContext.editTask);
+  vscode.commands.registerCommand('keepContextFork.deleteTask', keepContext.deleteTask);
+  vscode.commands.registerCommand('keepContextFork.activateTask', keepContext.activateTask);
+  vscode.commands.registerCommand('keepContextFork.selectTask', keepContext.selectTask);
 
   // https://code.visualstudio.com/api/references/vscode-api#Tab
   vscode.window.tabGroups.onDidChangeTabs(async (tabEvent) => {

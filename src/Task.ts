@@ -48,4 +48,14 @@ export default interface Task {
    * The layout of the editor for the task.
    */
   layout?: EditorGroupLayout;
+
+  /**
+   * The date of the task creation
+   */
+  createdAt: Date;
+
+  /**
+   * The date of the last update
+   */
+  updatedAt: Date;
 }

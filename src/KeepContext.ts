@@ -125,7 +125,7 @@ export default class KeepContext {
    * @param task available when using the Keep Context panel.
    */
   editTask = (task?: ContextTreeItem): void => {
-    const taskId = task?.id || state.activeTask;
+    const taskId = task?.id ?? state.activeTask;
 
     if (!taskId) {
       window.showWarningMessage('You must select a task to edit.');

@@ -51,6 +51,7 @@ export default class State {
   addTask(task: Task): void {
     const tasks = this.tasks;
 
+    task.updatedAt = new Date();
     this.storage.update('tasks', {
       ...tasks,
       [task.id]: task,

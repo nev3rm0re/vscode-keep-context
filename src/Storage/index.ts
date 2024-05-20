@@ -1,6 +1,6 @@
 import path = require('path');
 import { workspace } from 'vscode';
-import { getStorageType } from '../config';
+import { getStorageType, getStorageFileName } from '../config';
 import { state } from '../global';
 import { FileStorage } from './FileStorage';
 import { IStorage } from './IStorage';
@@ -16,7 +16,7 @@ export function getStorage(storageType = getStorageType()): IStorage {
       return new WorkspaceStorage();
     case 'file':
       if (!vsCodeSettings) throw new Error('No workspace found');
-      return new FileStorage(vsCodeSettings);
+      return new FileStorage(vsCodeSettings, getStorageFileName());
     default:
       throw new Error('Invalid storage type.');
   }

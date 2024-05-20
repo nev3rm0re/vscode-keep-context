@@ -14,6 +14,8 @@ export function createTask(name: string): Task {
     id: `task-${name}`,
     name,
     isActive: false,
+    createdAt: new Date(),
+    updatedAt: new Date(),
   };
 }
 

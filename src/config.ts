@@ -12,3 +12,7 @@ function config() {
 export function getStorageType(): 'workspace' | 'file' {
   return config().get('contextStore', 'workspace');
 }
+
+export function getStorageFileName(): string {
+  return config().get('contextFileName', 'keep-context-fork.json');
+}

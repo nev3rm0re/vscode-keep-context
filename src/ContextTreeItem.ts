@@ -51,12 +51,20 @@ export class ContextTreeItem extends TreeItem {
    * @param state Extension state
    */
   static fromState(): ContextTreeItem[] {
+    console.log('task', state.tasks);
     return Object.values(state.tasks).map((task) => {
-      return new ContextTreeItem(task.id, task.name, task.isActive, Contexts.TASK, TreeItemCollapsibleState.None, {
-        arguments: [task.id],
-        command: 'keepContext.activateTask',
-        title: '',
-      });
+      return new ContextTreeItem(
+        task.id,
+        task.name + ' ' + task.updatedAt,
+        task.isActive,
+        Contexts.TASK,
+        TreeItemCollapsibleState.None,
+        {
+          arguments: [task.id],
+          command: 'keepContext.activateTask',
+          title: '',
+        },
+      );
     });
   }
 

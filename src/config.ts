@@ -1,6 +1,6 @@
 import { workspace } from 'vscode';
 
-export const CONFIG_SECTION = 'keepContext';
+export const CONFIG_SECTION = 'keepContextFork';
 
 function config() {
   return workspace.getConfiguration(CONFIG_SECTION);
